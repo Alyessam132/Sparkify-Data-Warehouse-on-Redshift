@@ -39,7 +39,7 @@ And below is an example of what a single song file looks like
     - The Fact Table is songplays table
     - The dimension tables are (users, songs, artists and time)
 
-![Alt text](.\database-schema.png)
+![Alt text](database-schema.png)
 
 ## ETL Pipeline
 
@@ -72,6 +72,6 @@ run test_cluster.ipynb for testing
 
 Data has been successfly loaded from s3 bucket into data warehouse on redshift
 
-![Alt text](.\query_dim.png)
+![Alt text](query_dim.png)
 
-![Alt text](.\query_fact.png)
+![Alt text](query_fact.png)
