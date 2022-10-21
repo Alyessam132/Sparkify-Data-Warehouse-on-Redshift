@@ -25,7 +25,7 @@ And below is an example of what a single song file looks like
 
 - The log files in the dataset are partitioned by year and month.
 
-![Alt Text](.\log-data.png)
+![Alt Text](log-data.png)
 
 ## Solution
 
