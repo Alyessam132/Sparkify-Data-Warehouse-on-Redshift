@@ -9,7 +9,7 @@ config.read('dwh.cfg')
 
 staging_events_table_drop = ("""DROP TABLE IF EXISTS staging_events""")
 staging_songs_table_drop = ("""DROP TABLE IF EXISTS staging_songs""")
-songplay_table_drop = ("""DROP TABLE IF EXISTS songplay""")
+songplay_table_drop = ("""DROP TABLE IF EXISTS songplayس""")
 user_table_drop = ("""DROP TABLE  IF EXISTS users""")
 song_table_drop = ("""DROP TABLE  IF EXISTS songs""")
 artist_table_drop = ("""DROP TABLE  IF EXISTS artist""")
@@ -147,10 +147,15 @@ and se.page = 'NextSong'
 
 user_table_insert = ("""
 insert into users
-SELECT DISTINCT(userId) as user_id
-,firstName,lastName,gender,level
+SELECT userId,firstName,lastName,gender,level
+FROM 
+(
+SELECT userId,firstName,lastName,gender,level,
+ROW_NUMBER() OVER(PARTITION BY userid ORDER BY ts DESC) AS rank
 FROM staging_events
-WHERE userId is not NULL
+WHERE (userId is not NULL) and (page = 'NextSong')
+) unique_rank
+where rank = 1
 """)
 
 song_table_insert = ("""
